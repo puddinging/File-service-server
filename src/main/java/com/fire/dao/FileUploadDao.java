@@ -4,10 +4,8 @@ import com.fire.Pojo.FileData;
 import com.fire.Util.DerbyUtil;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.UUID;
 
 public class FileUploadDao {
 //    持久化元数据
@@ -23,7 +21,9 @@ public class FileUploadDao {
             e.printStackTrace();
         } finally {
 //            关闭连接
-            DerbyUtil.close(statement,conn);
+            if (statement != null) {
+                DerbyUtil.close(statement,conn);
+            }
         }
     }
 }
